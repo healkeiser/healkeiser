@@ -1,4 +1,4 @@
-<h1 align='left'>👋 Hi there! I'm Valentin.
+<h1 align='left'>:wave: Hi there! I'm Valentin.
  <img src="https://github.com/healkeiser/healkeiser/blob/main/header.png" width="176" alt="Analysis Blossom" align="right" />
  </p>
 </h1>
