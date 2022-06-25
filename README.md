@@ -1,4 +1,4 @@
-<h1 align='left'>👋 Hi there! I'm Valentin</h1>
+<h1 align='left'>👋 Hi there! I'm Valentin.</h1>
 
 <p align='left'>
   VFX Artist at <a href="https://untoldstudios.tv">Untold Studios</a>, based in London.<br>
@@ -15,6 +15,3 @@
   <a href="https://www.instagram.com/val.beaumontart/">
   <img src="https://img.shields.io/badge/-Instagram-85255b?style=for-the-badge&logo=instagram" alt="Instagram"/></a>
 </p>
-
-
-![Valentin's stats](https://github-readme-stats.vercel.app/api?username=healkeiser)
