@@ -1,4 +1,7 @@
-<h1 align='left'>👋 Hi there! I'm Valentin.</h1>
+<h1 align='left'>👋 Hi there! I'm Valentin.
+ <img src="https://github.com/healkeiser/healkeiser/blob/main/header.png" width="176" alt="Analysis Blossom" align="right" />
+ </p>
+</h1>
 
 <p align='left'>
   VFX Artist at <a href="https://untoldstudios.tv">Untold Studios</a>, based in London.<br>
