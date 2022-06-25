@@ -11,7 +11,7 @@
 <img src="https://img.shields.io/badge/-Instagram-85255b?style=for-the-badge&logo=instagram" alt="Instagram"/></a> 
 
 <p align="center">
-<img src="https://github.com/healkeiser/healkeiser/blob/main/header.png" width="400" alt="Analysis Blossom" align="right" />
+<img src="https://github.com/healkeiser/healkeiser/blob/main/header.png" width="400" alt="Analysis Blossom" align="left"/>
 </p>
 
 ![](https://github-readme-stats.vercel.app/api?username=healkeiser&theme=dark&hide_border=true&include_all_commits=false&count_private=false)<br/>
