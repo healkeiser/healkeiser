@@ -4,7 +4,7 @@
 </h1>
 
 <p align='left'>
-  VFX Artist at <a href="https://www.themill.com/">The Mill</a>, based in London.<br>
+  Lookdev TD at <a href="https://www.themill.com/">The Mill</a>, based in London.<br>
   I like chromatic aberration, glow, and useless tools. Among other things.
 </p>
 
