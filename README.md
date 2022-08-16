@@ -4,7 +4,7 @@
 </h1>
 
 <p align='left'>
-  VFX Artist at <a href="https://untoldstudios.tv">Untold Studios</a>, based in London.<br>
+  VFX Artist at <a href="https://www.themill.com/">The Mill</a>, based in London.<br>
   I like chromatic aberration, glow, and useless tools. Among other things.
 </p>
 
