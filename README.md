@@ -4,7 +4,7 @@
 </h1>
 
 <p align='left'>
-  Lookdev TD at <a href="https://www.themill.com/">The Mill</a>, based in London.<br>
+  Lookdev & Lighting Technical Director at <a href="https://www.themill.com/">The Mill</a>, based in London.<br>
   I like chromatic aberration, glow, and useless tools. Among other things.
 </p>
 
