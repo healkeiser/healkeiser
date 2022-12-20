@@ -22,3 +22,5 @@
   <a href="https://www.qt.io/qt-for-python">
   <img src="https://img.shields.io/badge/-PyQt-227332?style=for-the-badge&logo=qt" alt="PyQt"/></a> 
 </p>
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/healkeiser)
