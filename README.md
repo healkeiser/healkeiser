@@ -20,7 +20,9 @@
   <a href="https://www.python.org">
   <img src="https://img.shields.io/badge/-Python-FFD43B?style=for-the-badge&logo=python" alt="Python"/></a> 
   <a href="https://www.qt.io/qt-for-python">
-  <img src="https://img.shields.io/badge/-PyQt-227332?style=for-the-badge&logo=qt" alt="PyQt"/></a> 
+  <img src="https://img.shields.io/badge/-PyQt-227332?style=for-the-badge&logo=qt" alt="PyQt"/></a>
+  <a href="https://healkeiser.gumroad.com/subscribe">
+  <img src="https://img.shields.io/badge/-Gumroad-20151f?style=for-the-badge&logo=gumroad" alt="Gumroad"/></a>
 </p>
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/healkeiser)
