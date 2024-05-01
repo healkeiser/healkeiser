@@ -9,6 +9,17 @@
 </p>
 
 <p align='left'>
+ <h2>Project Documentations</h2>
+ <ul>
+   <li><a href="https://healkeiser.github.io/beacon/">Beacon</a></li>
+   <li><a href="https://healkeiser.github.io/pyside2_vfx_template//">PySide2 VFX Template</a></li>
+ </ul>
+</p>
+
+
+
+<p align='left'>
+ <h2>Socials</h2>
   <a href="https://www.linkedin.com/in/valentin-beaumont">
   <img src="https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn"/></a> 
   <a href="https://www.behance.net/el1ven">
