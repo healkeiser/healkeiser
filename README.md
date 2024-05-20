@@ -12,7 +12,7 @@
  <h2>Project Documentations</h2>
  <ul>
    <li><a href="https://healkeiser.github.io/beacon/">Beacon</a></li>
-   <li><a href="https://healkeiser.github.io/pyside2_vfx_template//">PySide2 VFX Template</a></li>
+   <li><a href="https://healkeiser.github.io/fxgui//">fxgui</a></li>
  </ul>
 </p>
 
