@@ -16,7 +16,12 @@
  </ul>
 </p>
 
-
+<p align='left'>
+ <h2>Notes</h2>
+ <ul>
+   <li><a href="https://healkeiser.github.io/notes/">Notes</a></li>
+ </ul>
+</p>
 
 <p align='left'>
  <h2>Socials</h2>
