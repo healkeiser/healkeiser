@@ -23,22 +23,29 @@
  </ul>
 </p>
 
-<p align='left'>
- <h2>Socials</h2>
+<p align='center'>
+  <!-- GitHub profile -->
+  <a href="https://github.com/healkeiser">
+    <img src="https://img.shields.io/badge/healkeiser-181717?logo=github&style=social" alt="GitHub"/></a>&nbsp;&nbsp;
+  <!-- LinkedIn -->
   <a href="https://www.linkedin.com/in/valentin-beaumont">
-  <img src="https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn"/></a> 
+    <img src="https://img.shields.io/badge/Valentin%20Beaumont-0A66C2?logo=linkedin&style=social" alt="LinkedIn"/></a>&nbsp;&nbsp;
+  <!-- Behance -->
   <a href="https://www.behance.net/el1ven">
-  <img src="https://img.shields.io/badge/-Behance-313131?style=for-the-badge&logo=behance" alt="Behance"/></a> 
+    <img src="https://img.shields.io/badge/el1ven-1769FF?logo=behance&style=social" alt="Behance"/></a>&nbsp;&nbsp;
+  <!-- X -->
   <a href="https://twitter.com/valentinbeaumon">
-  <img src="https://img.shields.io/badge/-Twitter-E1E8ED?style=for-the-badge&logo=twitter" alt="Twitter"/></a> 
+    <img src="https://img.shields.io/badge/@valentinbeaumon-1DA1F2?logo=x&style=social" alt="Twitter"/></a>&nbsp;&nbsp;
+  <!-- Instagram -->
   <a href="https://www.instagram.com/val.beaumontart">
-  <img src="https://img.shields.io/badge/-Instagram-85255b?style=for-the-badge&logo=instagram" alt="Instagram"/></a>   
-  <a href="https://www.python.org">
-  <img src="https://img.shields.io/badge/-Python-FFD43B?style=for-the-badge&logo=python" alt="Python"/></a> 
-  <a href="https://www.qt.io/qt-for-python">
-  <img src="https://img.shields.io/badge/-PyQt-227332?style=for-the-badge&logo=qt" alt="PyQt"/></a>
+    <img src="https://img.shields.io/badge/@val.beaumontart-E4405F?logo=instagram&style=social" alt="Instagram"/></a>&nbsp;&nbsp;
+  <!-- Gumroad -->
   <a href="https://healkeiser.gumroad.com/subscribe">
-  <img src="https://img.shields.io/badge/-Gumroad-20151f?style=for-the-badge&logo=gumroad" alt="Gumroad"/></a>
+    <img src="https://img.shields.io/badge/healkeiser-36a9ae?logo=gumroad&style=social" alt="Gumroad"/></a>&nbsp;&nbsp;
+  <!-- Gmail -->
+  <a href="mailto:valentin.onze@gmail.com">
+    <img src="https://img.shields.io/badge/valentin.onze@gmail.com-D14836?logo=gmail&style=social" alt="Email"/></a>&nbsp;&nbsp;
+  <!-- Buy me a coffee -->
+  <a href="https://www.buymeacoffee.com/healkeiser">
+    <img src="https://img.shields.io/badge/Buy Me A Coffee-FFDD00?&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee"/></a>&nbsp;&nbsp;
 </p>
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/healkeiser)
