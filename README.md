@@ -23,8 +23,8 @@
  </ul>
 </p>
 
+<h2>Social</h2>
 <p align='center'>
- <h2>Social</h2>
   <!-- GitHub profile -->
   <a href="https://github.com/healkeiser">
     <img src="https://img.shields.io/badge/healkeiser-181717?logo=github&style=social" alt="GitHub"/></a>&nbsp;&nbsp;
