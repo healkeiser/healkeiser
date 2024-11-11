@@ -11,8 +11,8 @@
 <p align='left'>
  <h2>Project Documentations</h2>
  <ul>
-   <li><a href="https://healkeiser.github.io/beacon/">Beacon</a></li>
-   <li><a href="https://healkeiser.github.io/fxgui//">fxgui</a></li>
+   <li><a href="https://healkeiser.github.io/beacon">Beacon</a></li>
+   <li><a href="https://healkeiser.github.io/fxgui">fxgui</a></li>
  </ul>
 </p>
 
