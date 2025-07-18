@@ -4,7 +4,7 @@
 </h1>
 
 <p align='left'>
-  Pipeline Technical Director at <a href="https://c14.studio/">C14</a>, based in London.<br>
+  Head of Pipeline at <a href="https://c14.studio/">C14</a>, based in London.<br>
   I like chromatic aberration, glow, and useless tools. Among other things.
 </p>
 
