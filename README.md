@@ -1,5 +1,6 @@
 <!-- HEADER -->
 <div align="center">
+
   <img src="https://github.com/healkeiser/healkeiser/blob/main/header.png" width="180"/>
   <br/><br/>
   <a href="https://git.io/typing-svg">
@@ -25,7 +26,10 @@
   <a href="mailto:valentin.onze@gmail.com">
     <img src="https://img.shields.io/badge/valentin.onze@gmail.com-D14836?logo=gmail&style=social" alt="Email"/></a>&nbsp;&nbsp;
   <a href="https://www.buymeacoffee.com/healkeiser">
-    <img src="https://img.shields.io/badge/Buy Me A Coffee-FFDD00?&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee"/></a>
+    <img src="https://img.shields.io/badge/Buy Me A Coffee-FFDD00?&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee"/></a>&nbsp;&nbsp;
+  <a href="https://github.com/healkeiser">
+      <img src="https://komarev.com/ghpvc/?username=healkeiser&style=social&color=e8590c" alt="Profile Views" /></a>&nbsp;&nbsp;
+
 </div>
 
 <br/>
@@ -40,21 +44,6 @@ company: Lotchi Studio
 location: Paris, France
 interests: [VFX, Pipeline TD, USD, Houdini, Python, Qt]
 ```
-
-<!-- FEATURED PROJECTS -->
-## 🚀 Featured Projects
-
-<div align="center">
-  <a href="https://github.com/healkeiser/fxgui">
-    <img src="https://socialify.git.ci/healkeiser/fxgui/image?description=1&language=1&name=1&owner=1&theme=Auto&pattern=Solid" width="400" />
-  </a>
-  <a href="https://github.com/healkeiser/fxhoudinimcp">
-    <img src="https://socialify.git.ci/healkeiser/fxhoudinimcp/image?description=1&language=1&name=1&owner=1&theme=Auto&pattern=Solid" width="400" />
-  </a>
-  <a href="https://github.com/healkeiser/fxserver">
-    <img src="https://socialify.git.ci/healkeiser/fxserver/image?description=1&language=1&name=1&owner=1&theme=Auto&pattern=Solid" width="400" />
-  </a>
-</div>
 
 <br/>
 
@@ -82,18 +71,4 @@ interests: [VFX, Pipeline TD, USD, Houdini, Python, Qt]
 
 <br/>
 
-<!-- RESOURCES -->
-## 📚 Resources
 
-<div align="center">
-  <a href="https://healkeiser.github.io/beacon"><img src="https://img.shields.io/badge/Beacon-Docs-e8590c?logo=readthedocs&style=social" /></a>&nbsp;&nbsp;
-  <a href="https://healkeiser.github.io/fxgui"><img src="https://img.shields.io/badge/fxgui-Docs-e8590c?logo=readthedocs&style=social" /></a>&nbsp;&nbsp;
-  <a href="https://healkeiser.github.io/notes/"><img src="https://img.shields.io/badge/Notes-e8590c?logo=obsidian&style=social" /></a>
-</div>
-
-<br/>
-
-<!-- FOOTER -->
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=healkeiser&style=social&color=e8590c" alt="Profile Views" />
-</div>
