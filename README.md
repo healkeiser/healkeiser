@@ -40,7 +40,7 @@
 ```yaml
 name: Valentin Beaumont
 role: Head of Pipeline
-company: Lotchi Studio
+company: Lotchi
 location: Paris, France
 interests: [VFX, Pipeline TD, USD, Houdini, Python, Qt]
 ```
