@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="420" viewBox="0 0 840 420" role="img" aria-label="Slate: GitHub, Valentin Beaumont, Head of Pipeline at Lotchi, Paris">
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="444" viewBox="0 0 840 444" role="img" aria-label="Slate: GitHub, Valentin Beaumont, Head of Pipeline at Lotchi, Paris">
   <style>
     :root{--bg:#0d1117;--ink:#e6edf3;--line:#30363d;--mute:#8b949e}
     @media (prefers-color-scheme: light){:root{--bg:#ffffff;--ink:#1f2328;--line:#d0d7de;--mute:#59636e}}
@@ -7,12 +7,25 @@
     .k{fill:var(--mute);font-size:11px;letter-spacing:2px}
     .v{fill:var(--ink);font-size:16px}
     .big{font-size:46px;font-weight:700;letter-spacing:8px}
-    /* The arm opens, then claps shut once, with a small bounce. */
-    .arm{transform-box:fill-box;transform-origin:0 100%;animation:clap 1.5s cubic-bezier(.5,0,.75,0) .4s both}
-    @keyframes clap{0%,45%{transform:rotate(-4deg)}70%{transform:rotate(0)}80%{transform:rotate(-.5deg)}90%,100%{transform:rotate(0)}}
+    /* One clap, 2.4s: hold open, anticipate (lift), slam with gravity
+       (ease-in), thump the board, then settle with decaying rebounds. */
+    .arm{transform-box:fill-box;transform-origin:0 100%;animation:clap 2.4s .3s both}
+    @keyframes clap{
+      0%{transform:rotate(-3deg);animation-timing-function:linear}
+      30%{transform:rotate(-3deg);animation-timing-function:cubic-bezier(.2,0,.3,1)}
+      42%{transform:rotate(-4deg);animation-timing-function:cubic-bezier(.75,0,1,.6)}
+      48%{transform:rotate(0);animation-timing-function:cubic-bezier(0,0,.3,1)}
+      53%{transform:rotate(-.9deg);animation-timing-function:cubic-bezier(.7,0,1,1)}
+      57.5%{transform:rotate(0);animation-timing-function:cubic-bezier(0,0,.3,1)}
+      61%{transform:rotate(-.3deg);animation-timing-function:cubic-bezier(.7,0,1,1)}
+      64%,100%{transform:rotate(0)}}
+    .board{animation:thump 2.4s .3s both}
+    @keyframes thump{0%,47.9%{transform:none}49.5%{transform:translateY(2.5px)}53%{transform:translateY(-.6px)}57%,100%{transform:none}}
+    .clack{opacity:0;transform-box:view-box;transform-origin:826px 62px;animation:clack 2.4s .3s both}
+    @keyframes clack{0%,47.9%{opacity:0;transform:scale(.4)}49%{opacity:1;transform:scale(.8);animation-timing-function:cubic-bezier(0,0,.3,1)}60%,100%{opacity:0;transform:scale(1.25)}}
     .rec{animation:rec 1.2s steps(1) infinite}
     @keyframes rec{50%{opacity:.15}}
-    @media (prefers-reduced-motion: reduce){.arm,.rec{animation:none}}
+    @media (prefers-reduced-motion: reduce){.arm,.board,.clack,.rec{animation:none}}
   </style>
   <defs>
     <pattern id="stripes" width="56" height="44" patternUnits="userSpaceOnUse" patternTransform="skewX(-35)">
@@ -21,8 +34,8 @@
     <!-- board: square top under the arm, rounded bottom corners -->
     <clipPath id="r"><path d="M1,44 H839 V369 A10,10 0 0 1 829,379 H11 A10,10 0 0 1 1,369 Z"/></clipPath>
   </defs>
-  <!-- 40px of headroom for the open arm -->
-  <g transform="translate(0 40)">
+  <!-- 64px of headroom: the arm's tip rises 61px at its 4deg peak -->
+  <g transform="translate(0 64)"><g class="board">
   <g clip-path="url(#r)">
     <rect y="44" width="840" height="336" class="bg"/>
     <!-- grid -->
@@ -66,5 +79,13 @@
   </g>
   <line x1="0" y1="44" x2="840" y2="44" class="ln"/>
   <circle cx="14" cy="44" r="4" class="bg" style="stroke:var(--line);stroke-width:1.5"/>
+  <!-- impact burst above the arm's tip -->
+  <g class="clack" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round">
+    <line x1="834.7" y1="-7.0" x2="852.0" y2="-17.0"/>
+    <line x1="831.0" y1="-10.7" x2="841.0" y2="-28.0"/>
+    <line x1="826.0" y1="-12.0" x2="826.0" y2="-32.0"/>
+    <line x1="821.0" y1="-10.7" x2="811.0" y2="-28.0"/>
+    <line x1="817.3" y1="-7.0" x2="800.0" y2="-17.0"/>
   </g>
+  </g></g>
 </svg>
