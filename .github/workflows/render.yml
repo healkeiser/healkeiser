@@ -1,0 +1,43 @@
+name: Render profile
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # Nightly, 03:00 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - README.template.md
+      - slate/**
+      - scripts/**
+      - .github/workflows/render.yml
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Self-test
+        run: python scripts/build_readme.py --self-test
+
+      - name: Render
+        run: python scripts/build_readme.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit if changed
+        run: |
+          git add README.md slate/slate.svg
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: render profile"
+          git push

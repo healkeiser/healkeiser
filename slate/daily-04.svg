@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="44" viewBox="0 0 840 44" role="img" aria-label="2026-11-16 fxgui: FXViewFooter: any tree or table card&#x27;s footer; a header rule w…"><style>
+:root{--bg:#0d1117;--panel:#161b22;--ink:#e6edf3;--line:#30363d;--mute:#8b949e;
+--ok:#3fb950;--okb:#1f6f3a55;--wip:#d29922;--wipb:#9e6a0355;--hold:#8b949e;--holdb:#30363d88;--fix:#f85149;--fixb:#da363355}
+@media (prefers-color-scheme: light){:root{--bg:#ffffff;--panel:#f6f8fa;--ink:#1f2328;--line:#d0d7de;--mute:#59636e;
+--ok:#1a7f37;--okb:#dafbe1;--wip:#9a6700;--wipb:#fff8c5;--hold:#59636e;--holdb:#eaeef2;--fix:#cf222e;--fixb:#ffebe9}}
+text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;fill:var(--ink)}
+.k{fill:var(--mute);font-size:10px;letter-spacing:1.5px}
+.m{fill:var(--mute)} .ln{stroke:var(--line);stroke-width:1.5;fill:none}
+.bg{fill:var(--bg)} .panel{fill:var(--panel)} .ink{fill:var(--ink)}
+</style><g transform="translate(0 0)"><path d="M0,0 H840 V44 H0 Z" class="bg"/><text x="16" y="27" font-size="11.5" font-weight="400">2026-11-16</text><text x="120" y="27" class="m" font-size="10.5" font-weight="400">SH030</text><text x="157.8" y="27" font-size="12" font-weight="700">fxgui</text><rect x="360" y="12" width="48" height="20" rx="10" style="fill:var(--okb)"/><text x="384.0" y="25.5" font-size="10" text-anchor="middle" letter-spacing="1" style="fill:var(--ok)">FEAT</text><text x="420" y="27" font-size="12" font-weight="400">FXViewFooter: any tree or table card&#x27;s footer; a header…</text><line x1="0" y1="43.25" x2="840" y2="43.25" class="ln"/><path d="M0.75,0 V44 M839.25,0 V44" class="ln"/></g></svg>

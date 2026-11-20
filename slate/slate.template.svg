@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="380" viewBox="0 0 840 380" role="img" aria-label="Slate: GitHub, Valentin Beaumont, Head of Pipeline at Lotchi, Paris">
+  <style>
+    :root{--bg:#0d1117;--ink:#e6edf3;--line:#30363d;--mute:#8b949e}
+    @media (prefers-color-scheme: light){:root{--bg:#ffffff;--ink:#1f2328;--line:#d0d7de;--mute:#59636e}}
+    .bg{fill:var(--bg)} .ink{fill:var(--ink)} .ln{stroke:var(--line);stroke-width:1.5;fill:none}
+    text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .k{fill:var(--mute);font-size:11px;letter-spacing:2px}
+    .v{fill:var(--ink);font-size:16px}
+    .big{font-size:46px;font-weight:700;letter-spacing:8px}
+  </style>
+  <defs>
+    <pattern id="stripes" width="56" height="44" patternUnits="userSpaceOnUse" patternTransform="skewX(-35)">
+      <rect width="28" height="44" class="ink"/>
+    </pattern>
+    <clipPath id="r"><rect x="1" y="1" width="838" height="378" rx="10"/></clipPath>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="840" height="380" class="bg"/>
+    <!-- clapper stick -->
+    <rect y="0" width="840" height="44" fill="url(#stripes)"/>
+    <line x1="0" y1="44" x2="840" y2="44" class="ln"/>
+    <!-- grid -->
+    <line x1="0" y1="140" x2="840" y2="140" class="ln"/>
+    <line x1="0" y1="212" x2="840" y2="212" class="ln"/>
+    <line x1="640" y1="44" x2="640" y2="140" class="ln"/>
+    <line x1="230" y1="140" x2="230" y2="212" class="ln"/>
+    <line x1="440" y1="140" x2="440" y2="212" class="ln"/>
+    <line x1="640" y1="140" x2="640" y2="212" class="ln"/>
+    <!-- row 1 -->
+    <text x="22" y="68" class="k">PROD</text>
+    <text x="22" y="122" class="big ink">GITHUB</text>
+    <text x="662" y="68" class="k">LAST TAKE</text>
+    <text x="662" y="116" class="v" style="font-size:24px">{{DATE}}</text>
+    <!-- row 2 -->
+    <text x="22" y="164" class="k">DIRECTOR</text>
+    <text x="22" y="194" class="v">Valentin Beaumont</text>
+    <text x="252" y="164" class="k">ROLE</text>
+    <text x="252" y="194" class="v">Head of Pipeline</text>
+    <text x="462" y="164" class="k">STUDIO</text>
+    <text x="462" y="194" class="v">Lotchi · Paris</text>
+    <text x="662" y="164" class="k">SINCE</text>
+    <text x="662" y="194" class="v">2019</text>
+    <!-- row 3 -->
+    <text x="22" y="236" class="k">NOTES</text>
+    <text x="22" y="268" class="v">I like chromatic aberration, glow, and useless tools.</text>
+    <text x="22" y="288" class="k" style="letter-spacing:1px">Among other things.</text>
+    <!-- row 4: contributions as a sound waveform, filled by scripts/build_readme.py -->
+    <line x1="0" y1="298" x2="840" y2="298" class="ln"/>
+    <text x="22" y="318" class="k">{{WAVE_LABEL}}</text>
+    {{WAVE}}
+  </g>
+  <rect x="1" y="1" width="838" height="378" rx="10" class="ln"/>
+</svg>
