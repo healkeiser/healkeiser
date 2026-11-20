@@ -2,30 +2,30 @@
 
 <!-- SLATE -->
 <p align="center">
-  <img src="slate/slate.svg" width="100%" alt="GitHub slate — Valentin Beaumont, Head of Pipeline at Lotchi, Paris"/>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/slate.svg"/><img src="slate/light/slate.svg" width="100%" alt="GitHub slate — Valentin Beaumont, Head of Pipeline at Lotchi, Paris"/></picture>
 </p>
 
 <!-- SHOTS: one card per pinned repository, in pin order -->
 <p>
-<img src="slate/shots-header.svg" width="100%" align="right" alt=""/>
-<a href="https://github.com/healkeiser/fxhoudinimcp"><img src="slate/shot-SH010.svg" width="100%" align="right" alt="SH010 fxhoudinimcp"/></a>
-<a href="https://github.com/healkeiser/HdUnrealEngine"><img src="slate/shot-SH020.svg" width="100%" align="right" alt="SH020 HdUnrealEngine"/></a>
-<a href="https://github.com/healkeiser/fxgui"><img src="slate/shot-SH030.svg" width="100%" align="right" alt="SH030 fxgui"/></a>
-<a href="https://github.com/healkeiser/fxhoudinimotion"><img src="slate/shot-SH040.svg" width="100%" align="right" alt="SH040 fxhoudinimotion"/></a>
-<a href="https://github.com/healkeiser/fxserver"><img src="slate/shot-SH050.svg" width="100%" align="right" alt="SH050 fxserver"/></a>
-<a href="https://github.com/healkeiser/youtrack-companion"><img src="slate/shot-SH060.svg" width="100%" align="right" alt="SH060 youtrack-companion"/></a>
-<img src="slate/shots-footer.svg" width="100%" align="right" alt=""/>
+<picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shots-header.svg"/><img src="slate/light/shots-header.svg" width="100%" align="right" alt=""/></picture>
+<a href="https://github.com/healkeiser/fxhoudinimcp"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shot-SH010.svg"/><img src="slate/light/shot-SH010.svg" width="100%" align="right" alt="SH010 fxhoudinimcp"/></picture></a>
+<a href="https://github.com/healkeiser/HdUnrealEngine"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shot-SH020.svg"/><img src="slate/light/shot-SH020.svg" width="100%" align="right" alt="SH020 HdUnrealEngine"/></picture></a>
+<a href="https://github.com/healkeiser/fxgui"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shot-SH030.svg"/><img src="slate/light/shot-SH030.svg" width="100%" align="right" alt="SH030 fxgui"/></picture></a>
+<a href="https://github.com/healkeiser/fxhoudinimotion"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shot-SH040.svg"/><img src="slate/light/shot-SH040.svg" width="100%" align="right" alt="SH040 fxhoudinimotion"/></picture></a>
+<a href="https://github.com/healkeiser/fxserver"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shot-SH050.svg"/><img src="slate/light/shot-SH050.svg" width="100%" align="right" alt="SH050 fxserver"/></picture></a>
+<a href="https://github.com/healkeiser/youtrack-companion"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shot-SH060.svg"/><img src="slate/light/shot-SH060.svg" width="100%" align="right" alt="SH060 youtrack-companion"/></picture></a>
+<picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/shots-footer.svg"/><img src="slate/light/shots-footer.svg" width="100%" align="right" alt=""/></picture>
 </p>
 
 <!-- DAILIES: newest real work across recently pushed public repositories -->
 <p>
-<img src="slate/dailies-header.svg" width="100%" align="right" alt=""/>
-<a href="https://github.com/healkeiser/fxhoudinimcp/commit/2c4aa018d4331c48b46154a9ec3decc66f9dc374"><img src="slate/daily-01.svg" width="100%" align="right" alt="fxhoudinimcp: A spare ramp&#x27;s kind change is refused, not wiped"/></a>
-<a href="https://github.com/healkeiser/fxhoudinimcp/commit/bcba4e2afcd21869e100f81ec968e198d985de8a"><img src="slate/daily-02.svg" width="100%" align="right" alt="fxhoudinimcp: A capture names a SOP subnet the viewer was taken into"/></a>
-<a href="https://github.com/healkeiser/fxgui/commit/22e7ef50c0d39d5d6c806e4bcf02ffac7fc1edb4"><img src="slate/daily-03.svg" width="100%" align="right" alt="fxgui: FXViewFooter: no crash at a window&#x27;s teardown or on a row size …"/></a>
-<a href="https://github.com/healkeiser/fxgui/commit/2659478f057063f29d9145599c9d3764f07b8d88"><img src="slate/daily-04.svg" width="100%" align="right" alt="fxgui: FXViewFooter: any tree or table card&#x27;s footer; a header rule w…"/></a>
-<a href="https://github.com/healkeiser/claude-plugins/commit/b295836502f40a6dc386452c6441d728e0eff343"><img src="slate/daily-05.svg" width="100%" align="right" alt="claude-plugins: A scrollbar when the pane is taller than its window"/></a>
-<img src="slate/dailies-footer.svg" width="100%" align="right" alt=""/>
+<picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/dailies-header.svg"/><img src="slate/light/dailies-header.svg" width="100%" align="right" alt=""/></picture>
+<a href="https://github.com/healkeiser/fxhoudinimcp/commit/2c4aa018d4331c48b46154a9ec3decc66f9dc374"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/daily-01.svg"/><img src="slate/light/daily-01.svg" width="100%" align="right" alt="fxhoudinimcp: A spare ramp&#x27;s kind change is refused, not wiped"/></picture></a>
+<a href="https://github.com/healkeiser/fxhoudinimcp/commit/bcba4e2afcd21869e100f81ec968e198d985de8a"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/daily-02.svg"/><img src="slate/light/daily-02.svg" width="100%" align="right" alt="fxhoudinimcp: A capture names a SOP subnet the viewer was taken into"/></picture></a>
+<a href="https://github.com/healkeiser/fxgui/commit/22e7ef50c0d39d5d6c806e4bcf02ffac7fc1edb4"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/daily-03.svg"/><img src="slate/light/daily-03.svg" width="100%" align="right" alt="fxgui: FXViewFooter: no crash at a window&#x27;s teardown or on a row size …"/></picture></a>
+<a href="https://github.com/healkeiser/fxgui/commit/2659478f057063f29d9145599c9d3764f07b8d88"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/daily-04.svg"/><img src="slate/light/daily-04.svg" width="100%" align="right" alt="fxgui: FXViewFooter: any tree or table card&#x27;s footer; a header rule w…"/></picture></a>
+<a href="https://github.com/healkeiser/claude-plugins/commit/b295836502f40a6dc386452c6441d728e0eff343"><picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/daily-05.svg"/><img src="slate/light/daily-05.svg" width="100%" align="right" alt="claude-plugins: A scrollbar when the pane is taller than its window"/></picture></a>
+<picture><source media="(prefers-color-scheme: dark)" srcset="slate/dark/dailies-footer.svg"/><img src="slate/light/dailies-footer.svg" width="100%" align="right" alt=""/></picture>
 </p>
 
 <!-- CREDITS -->

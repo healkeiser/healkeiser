@@ -15,6 +15,11 @@ on:
 permissions:
   contents: write
 
+# One render at a time; a queued run waits instead of racing the push.
+concurrency:
+  group: render
+  cancel-in-progress: false
+
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -35,9 +40,10 @@ jobs:
 
       - name: Commit if changed
         run: |
-          git add README.md slate/slate.svg
+          git add README.md slate
           git diff --cached --quiet && exit 0
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: render profile"
+          git pull --rebase
           git push

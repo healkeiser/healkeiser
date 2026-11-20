@@ -1,15 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="444" viewBox="0 0 840 444" role="img" aria-label="Slate: GitHub, Valentin Beaumont, Head of Pipeline at Lotchi, Paris">
   <style>
-    :root{--bg:#0d1117;--ink:#e6edf3;--line:#30363d;--mute:#8b949e}
-    @media (prefers-color-scheme: light){:root{--bg:#ffffff;--ink:#1f2328;--line:#d0d7de;--mute:#59636e}}
+    {{PALETTE}}
+    {{COMMON}}
     .bg{fill:var(--bg)} .ink{fill:var(--ink)} .ln{stroke:var(--line);stroke-width:1.5;fill:none}
-    text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
     .k{fill:var(--mute);font-size:11px;letter-spacing:2px}
     .v{fill:var(--ink);font-size:16px}
     .big{font-size:46px;font-weight:700;letter-spacing:8px}
     /* One clap, impact at 1.07s (IMPACT in scripts/build_readme.py; the
-       tables and the waveform start there). Hold open, lift slowly, slam
-       with a hard ease-in, one small rebound, still. */
+       tables, the waveform and the timecode start there). Hold open, lift
+       slowly, slam with a hard ease-in, one small rebound, still. */
     .arm{transform-box:fill-box;transform-origin:0 100%;animation:clap 2s both}
     @keyframes clap{
       0%{transform:rotate(-2.6deg);animation-timing-function:linear}
@@ -51,36 +50,53 @@
   <g clip-path="url(#r)">
     <rect y="44" width="840" height="336" class="bg"/>
     <rect class="shade" y="44" width="840" height="16" fill="url(#shadeg)"/>
-    <!-- grid -->
+    <!-- grid: rows in both layouts, columns only in the wide one -->
     <line x1="0" y1="140" x2="840" y2="140" class="ln"/>
     <line x1="0" y1="212" x2="840" y2="212" class="ln"/>
-    <line x1="640" y1="44" x2="640" y2="140" class="ln"/>
-    <line x1="230" y1="140" x2="230" y2="212" class="ln"/>
-    <line x1="440" y1="140" x2="440" y2="212" class="ln"/>
-    <line x1="640" y1="140" x2="640" y2="212" class="ln"/>
-    <!-- row 1 -->
-    <text x="22" y="68" class="k">PROD</text>
-    <text x="22" y="122" class="big ink">GITHUB</text>
-    <text x="662" y="68" class="k">LAST TAKE</text>
-    <circle class="rec" cx="780" cy="64" r="4" fill="#f85149" style="fill:#f85149"/>
-    <text x="790" y="68" class="k" style="fill:#f85149">REC</text>
-    <text x="662" y="116" class="v" style="font-size:24px">{{DATE}}</text>
-    <!-- row 2 -->
-    <text x="22" y="164" class="k">DIRECTOR</text>
-    <text x="22" y="194" class="v">Valentin Beaumont</text>
-    <text x="252" y="164" class="k">ROLE</text>
-    <text x="252" y="194" class="v">Head of Pipeline</text>
-    <text x="462" y="164" class="k">STUDIO</text>
-    <text x="462" y="194" class="v">Lotchi · Paris</text>
-    <text x="662" y="164" class="k">SINCE</text>
-    <text x="662" y="194" class="v">2019</text>
-    <!-- row 3 -->
-    <text x="22" y="236" class="k">NOTES</text>
-    <text x="22" y="268" class="v">I like chromatic aberration, glow, and useless tools.</text>
-    <text x="22" y="288" class="k" style="letter-spacing:1px">Among other things.</text>
-    <!-- row 4: contributions as a sound waveform, filled by scripts/build_readme.py -->
     <line x1="0" y1="298" x2="840" y2="298" class="ln"/>
-    <text x="22" y="318" class="k">{{WAVE_LABEL}}</text>
+    <g class="w">
+      <line x1="640" y1="44" x2="640" y2="140" class="ln"/>
+      <line x1="230" y1="140" x2="230" y2="212" class="ln"/>
+      <line x1="440" y1="140" x2="440" y2="212" class="ln"/>
+      <line x1="640" y1="140" x2="640" y2="212" class="ln"/>
+      <!-- row 1 -->
+      <text x="22" y="68" class="k">PROD</text>
+      <text x="22" y="122" class="big ink">GITHUB</text>
+      <text x="662" y="68" class="k">LAST TAKE</text>
+      <circle class="rec" cx="780" cy="64" r="4" fill="#f85149" style="fill:#f85149"/>
+      <text x="790" y="68" class="k" style="fill:#f85149">REC</text>
+      <text x="662" y="116" class="v" style="font-size:24px">{{DATE}}</text>
+      <!-- row 2 -->
+      <text x="22" y="164" class="k">DIRECTOR</text>
+      <text x="22" y="194" class="v">Valentin Beaumont</text>
+      <text x="252" y="164" class="k">ROLE</text>
+      <text x="252" y="194" class="v">Head of Pipeline</text>
+      <text x="462" y="164" class="k">STUDIO</text>
+      <text x="462" y="194" class="v">Lotchi · Paris</text>
+      <text x="662" y="164" class="k">SINCE</text>
+      <text x="662" y="194" class="v">2019</text>
+      <!-- row 3 -->
+      <text x="22" y="236" class="k">NOTES</text>
+      <text x="22" y="268" class="v">I like chromatic aberration, glow, and useless tools.</text>
+      <text x="22" y="288" class="k" style="letter-spacing:1px">Among other things.</text>
+      <!-- row 4 label and timecode; the waveform below is shared -->
+      <text x="22" y="318" class="k">{{WAVE_LABEL}}</text>
+      <text x="706" y="318" class="k">TC</text>
+      {{TC_WIDE}}
+    </g>
+    <!-- narrow layout (phones): the same box at about 0.43 scale, so fewer, larger fields -->
+    <g class="n">
+      <text x="22" y="122" font-size="60" font-weight="700" letter-spacing="6">GITHUB</text>
+      <circle class="rec" cx="702" cy="74" r="7" fill="#f85149" style="fill:#f85149"/>
+      <text x="716" y="82" font-size="22" style="fill:#f85149">REC</text>
+      <text x="818" y="124" font-size="30" text-anchor="end">{{DATE}}</text>
+      <text x="22" y="188" font-size="30">Valentin Beaumont</text>
+      <text x="818" y="188" font-size="30" text-anchor="end">Head of Pipeline</text>
+      <text x="22" y="266" font-size="28">Lotchi · Paris · since 2019</text>
+      <text x="22" y="323" font-size="20" style="fill:var(--mute)">{{WAVE_LABEL_NARROW}}</text>
+      {{TC_NARROW}}
+    </g>
+    <!-- contributions as a sound waveform, filled by scripts/build_readme.py -->
     {{WAVE}}
   </g>
   <path d="M1,44 V369 A10,10 0 0 0 11,379 H829 A10,10 0 0 0 839,369 V44" class="ln"/>

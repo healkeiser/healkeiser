@@ -2,7 +2,7 @@
 
 <!-- SLATE -->
 <p align="center">
-  <img src="slate/slate.svg" width="100%" alt="GitHub slate — Valentin Beaumont, Head of Pipeline at Lotchi, Paris"/>
+  {{SLATE}}
 </p>
 
 <!-- SHOTS: one card per pinned repository, in pin order -->

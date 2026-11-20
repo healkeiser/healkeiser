@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="44" viewBox="0 0 840 44" role="img" aria-label="2026-11-20 fxhoudinimcp: A spare ramp&#x27;s kind change is refused, not wiped (+46 −0)"><style>:root{--bg:#ffffff;--panel:#f6f8fa;--ink:#1f2328;--line:#d0d7de;--mute:#59636e;--ok:#1a7f37;--okb:#dafbe1;--wip:#9a6700;--wipb:#fff8c5;--hold:#59636e;--holdb:#eaeef2;--fix:#cf222e;--fixb:#ffebe9}
+text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;fill:var(--ink)}
+.n{display:none}
+@media (max-width:560px){.w{display:none}.n{display:inline}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.2}}
+@media (prefers-reduced-motion: reduce){.in,.pulse,.tc{animation:none!important}}
+
+.k{fill:var(--mute);font-size:10px;letter-spacing:1.5px}
+.m{fill:var(--mute)} .ln{stroke:var(--line);stroke-width:1.5;fill:none}
+.bg{fill:var(--bg)} .panel{fill:var(--panel)} .ink{fill:var(--ink)}
+.in{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+</style><g transform="translate(0 0)"><g class="in" style="animation-delay:1.70s"><path d="M0,0 H840 V44 H0 Z" class="bg"/><g class="w"><text x="16" y="27" font-size="11.5" font-weight="400">2026-11-20</text><text x="104" y="27" class="m" font-size="10.5" font-weight="400">SH010</text><text x="141.8" y="27" font-size="12" font-weight="700">fxhoudinimcp</text><rect x="290.5" y="12.5" width="47" height="19.0" rx="9.5" style="fill:var(--fixb);stroke:var(--fix);stroke-opacity:.45;stroke-width:1.0"/><text x="314.0" y="25.5" font-size="10" text-anchor="middle" letter-spacing="0.60" style="fill:var(--fix)">FIX</text><text x="346" y="27" font-size="12" font-weight="400">A spare ramp&#x27;s kind change is refused, not wiped</text><text x="824" y="21" font-size="10" text-anchor="end"><tspan style="fill:var(--ok)">+46</tspan> <tspan style="fill:var(--fix)">−0</tspan></text><rect x="786" y="27" width="6" height="6" rx="1" style="fill:var(--ok)"/><rect x="794" y="27" width="6" height="6" rx="1" style="fill:var(--ok)"/><rect x="802" y="27" width="6" height="6" rx="1" style="fill:var(--ok)"/><rect x="810" y="27" width="6" height="6" rx="1" style="fill:var(--ok)"/><rect x="818" y="27" width="6" height="6" rx="1" style="fill:var(--ok)"/></g><g class="n"><rect x="16.5" y="5.9" width="95" height="32.3" rx="16.1" style="fill:var(--fixb);stroke:var(--fix);stroke-opacity:.45;stroke-width:1.7"/><text x="64.0" y="27.9" font-size="17" text-anchor="middle" letter-spacing="1.02" style="fill:var(--fix)">FIX</text><text x="128" y="31" font-size="24" font-weight="400">A spare ramp&#x27;s kind change is refused, not wiped</text></g><line x1="0" y1="43.25" x2="840" y2="43.25" class="ln"/><path d="M0.75,0 V44 M839.25,0 V44" class="ln"/></g></g></svg>
