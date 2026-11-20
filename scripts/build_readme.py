@@ -40,6 +40,7 @@ WIDTH = 840
 FIRST_FRAME = 1001
 HOLD_AFTER_DAYS = 180
 WAVE_DAYS = 120
+IMPACT = 1.07  # seconds: when the slate's arm lands (see slate.template.svg)
 PLAY_SECONDS = 9  # one pass of the waveform playhead
 ROW_STEP = 0.07  # seconds between rows fading in
 DAILIES_COUNT = 5
@@ -67,8 +68,8 @@ text{{font-family:{MONO};fill:var(--ink)}}
 .k{{fill:var(--mute);font-size:10px;letter-spacing:1.5px}}
 .m{{fill:var(--mute)}} .ln{{stroke:var(--line);stroke-width:1.5;fill:none}}
 .bg{{fill:var(--bg)}} .panel{{fill:var(--panel)}} .ink{{fill:var(--ink)}}
-.in{{animation:rise .5s ease-out both}}
-@keyframes rise{{from{{opacity:0;transform:translateY(6px)}}}}
+.in{{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}}
+@keyframes rise{{from{{opacity:0;transform:translateY(10px)}}}}
 .pulse{{animation:pulse 1.6s ease-in-out infinite}}
 @keyframes pulse{{50%{{opacity:.2}}}}
 @media (prefers-reduced-motion: reduce){{.in,.pulse{{animation:none}}}}
@@ -264,7 +265,8 @@ def svg(
         part: ``head``, ``row`` or ``foot``.
         top: Transparent space above the piece.
         bottom: Transparent space below the piece.
-        delay: Seconds before the piece fades in, so a table's rows arrive in turn.
+        delay: Seconds after the clap's impact before the piece slides in, so
+            a table's rows arrive in turn.
 
     Returns:
         The SVG document.
@@ -282,7 +284,7 @@ def svg(
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{total}" '
         f'viewBox="0 0 {w} {total}" role="img" aria-label="{escape(label)}">{STYLE}'
-        f'<g transform="translate(0 {top})"><g class="in" style="animation-delay:{delay:.2f}s">'
+        f'<g transform="translate(0 {top})"><g class="in" style="animation-delay:{IMPACT + delay:.2f}s">'
         f'<path d="{fill} Z" class="{"panel" if part == "foot" else "bg"}"/>'
         f'{body}{rule}<path d="{outline}" class="ln"/></g></g></svg>'
     )
@@ -388,8 +390,8 @@ def waveform(days: list[dict]) -> tuple[str, int]:
     """Return daily contributions drawn as an audio waveform, and their total.
 
     Bars are mirrored around a centre line, the way an editing timeline shows
-    a sound track. A playhead sweeps it on a loop, lighting the bars it has
-    played, and rests on today. Without animation, the whole track is lit.
+    a sound track. From the clap's impact, as on a real slate, a playhead
+    sweeps it on a loop, lighting the bars it has played, and rests on today.
     """
     x0, width, mid, half = 22, WIDTH - 44, 350, 18
     step = width / len(days)
@@ -402,15 +404,15 @@ def waveform(days: list[dict]) -> tuple[str, int]:
             f'height="{amp * 2:.1f}" rx="{min(step * 0.3, 1.5):.1f}"/>'
         )
     bars = "".join(bars)
-    play = f'dur="{PLAY_SECONDS}s" repeatCount="indefinite" keyTimes="0;.85;1" calcMode="spline" keySplines=".4 0 .6 1;0 0 1 1"'
+    play = f'begin="{IMPACT}s" dur="{PLAY_SECONDS}s" repeatCount="indefinite" keyTimes="0;.85;1" calcMode="spline" keySplines=".4 0 .6 1;0 0 1 1"'
     head = x0 + width
     parts = (
         f'<line x1="{x0}" y1="{mid}" x2="{head}" y2="{mid}" class="ln"/>'
-        f'<clipPath id="played"><rect x="{x0}" y="{mid - half - 1}" width="{width}" height="{2 * half + 2}">'
+        f'<clipPath id="played"><rect x="{x0}" y="{mid - half - 1}" width="0" height="{2 * half + 2}">'
         f'<animate attributeName="width" values="0;{width};{width}" {play}/></rect></clipPath>'
         f'<g class="ink" opacity=".25">{bars}</g>'
         f'<g class="ink" opacity=".8" clip-path="url(#played)">{bars}</g>'
-        f'<g><animateTransform attributeName="transform" type="translate" values="{-width} 0;0 0;0 0" {play}/>'
+        f'<g transform="translate({-width} 0)"><animateTransform attributeName="transform" type="translate" values="{-width} 0;0 0;0 0" {play}/>'
         f'<line x1="{head}" y1="{mid - half - 2}" x2="{head}" y2="{mid + half + 4}" stroke="#e8590c" stroke-width="2"/>'
         f'<path d="M{head - 5},{mid - half - 8} h10 l-5,6 z" fill="#e8590c" style="fill:#e8590c"/></g>'
     )

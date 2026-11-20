@@ -7,25 +7,29 @@
     .k{fill:var(--mute);font-size:11px;letter-spacing:2px}
     .v{fill:var(--ink);font-size:16px}
     .big{font-size:46px;font-weight:700;letter-spacing:8px}
-    /* One clap, 2.4s: hold open, anticipate (lift), slam with gravity
-       (ease-in), thump the board, then settle with decaying rebounds. */
-    .arm{transform-box:fill-box;transform-origin:0 100%;animation:clap 2.4s .3s both}
+    /* One clap, impact at 1.07s (IMPACT in scripts/build_readme.py; the
+       tables and the waveform start there). Hold open, lift slowly, slam
+       with a hard ease-in, one small rebound, still. */
+    .arm{transform-box:fill-box;transform-origin:0 100%;animation:clap 2s both}
     @keyframes clap{
-      0%{transform:rotate(-3deg);animation-timing-function:linear}
-      30%{transform:rotate(-3deg);animation-timing-function:cubic-bezier(.2,0,.3,1)}
-      42%{transform:rotate(-4deg);animation-timing-function:cubic-bezier(.75,0,1,.6)}
-      48%{transform:rotate(0);animation-timing-function:cubic-bezier(0,0,.3,1)}
-      53%{transform:rotate(-.9deg);animation-timing-function:cubic-bezier(.7,0,1,1)}
-      57.5%{transform:rotate(0);animation-timing-function:cubic-bezier(0,0,.3,1)}
-      61%{transform:rotate(-.3deg);animation-timing-function:cubic-bezier(.7,0,1,1)}
-      64%,100%{transform:rotate(0)}}
-    .board{animation:thump 2.4s .3s both}
-    @keyframes thump{0%,47.9%{transform:none}49.5%{transform:translateY(2.5px)}53%{transform:translateY(-.6px)}57%,100%{transform:none}}
-    .clack{opacity:0;transform-box:view-box;transform-origin:826px 62px;animation:clack 2.4s .3s both}
-    @keyframes clack{0%,47.9%{opacity:0;transform:scale(.4)}49%{opacity:1;transform:scale(.8);animation-timing-function:cubic-bezier(0,0,.3,1)}60%,100%{opacity:0;transform:scale(1.25)}}
+      0%{transform:rotate(-2.6deg);animation-timing-function:linear}
+      30%{transform:rotate(-2.6deg);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+      47.5%{transform:rotate(-4deg);animation-timing-function:cubic-bezier(.6,0,1,.6)}
+      53.5%{transform:rotate(0);animation-timing-function:cubic-bezier(0,0,.2,1)}
+      57.5%{transform:rotate(-.35deg);animation-timing-function:cubic-bezier(.6,0,1,1)}
+      61%,100%{transform:rotate(0)}}
+    /* The board takes the hit: it sinks 1.5px and eases back. */
+    .board{animation:thump 2s both}
+    @keyframes thump{0%,53.4%{transform:none;animation-timing-function:cubic-bezier(0,0,.2,1)}55%{transform:translateY(1.5px);animation-timing-function:cubic-bezier(.3,0,.2,1)}64%,100%{transform:none}}
+    /* Contact shadow under the open arm, gone once it closes. */
+    .shade{animation:shade 2s both}
+    @keyframes shade{0%,47.5%{opacity:1}53.5%{opacity:0}57.5%{opacity:.25}61%,100%{opacity:0}}
+    /* A glint runs along the seam on impact. */
+    .glint{opacity:0;animation:glint .55s 1.07s cubic-bezier(.2,.7,.3,1) both}
+    @keyframes glint{0%{opacity:1;transform:translateX(0)}70%{opacity:.8}100%{opacity:0;transform:translateX(980px)}}
     .rec{animation:rec 1.2s steps(1) infinite}
     @keyframes rec{50%{opacity:.15}}
-    @media (prefers-reduced-motion: reduce){.arm,.board,.clack,.rec{animation:none}}
+    @media (prefers-reduced-motion: reduce){.arm,.board,.shade,.glint,.rec{animation:none}}
   </style>
   <defs>
     <pattern id="stripes" width="56" height="44" patternUnits="userSpaceOnUse" patternTransform="skewX(-35)">
@@ -33,11 +37,20 @@
     </pattern>
     <!-- board: square top under the arm, rounded bottom corners -->
     <clipPath id="r"><path d="M1,44 H839 V369 A10,10 0 0 1 829,379 H11 A10,10 0 0 1 1,369 Z"/></clipPath>
+    <linearGradient id="shadeg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glintg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" style="stop-color:var(--ink);stop-opacity:0"/>
+      <stop offset=".8" style="stop-color:var(--ink);stop-opacity:1"/>
+      <stop offset="1" style="stop-color:var(--ink);stop-opacity:0"/>
+    </linearGradient>
   </defs>
   <!-- 64px of headroom: the arm's tip rises 61px at its 4deg peak -->
   <g transform="translate(0 64)"><g class="board">
   <g clip-path="url(#r)">
     <rect y="44" width="840" height="336" class="bg"/>
+    <rect class="shade" y="44" width="840" height="16" fill="url(#shadeg)"/>
     <!-- grid -->
     <line x1="0" y1="140" x2="840" y2="140" class="ln"/>
     <line x1="0" y1="212" x2="840" y2="212" class="ln"/>
@@ -78,14 +91,7 @@
     <path d="M1,44 V11 A10,10 0 0 1 11,1 H829 A10,10 0 0 1 839,11 V44 Z" class="ln"/>
   </g>
   <line x1="0" y1="44" x2="840" y2="44" class="ln"/>
+  <rect class="glint" x="-140" y="43" width="140" height="2" fill="url(#glintg)"/>
   <circle cx="14" cy="44" r="4" class="bg" style="stroke:var(--line);stroke-width:1.5"/>
-  <!-- impact burst above the arm's tip -->
-  <g class="clack" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round">
-    <line x1="834.7" y1="-7.0" x2="852.0" y2="-17.0"/>
-    <line x1="831.0" y1="-10.7" x2="841.0" y2="-28.0"/>
-    <line x1="826.0" y1="-12.0" x2="826.0" y2="-32.0"/>
-    <line x1="821.0" y1="-10.7" x2="811.0" y2="-28.0"/>
-    <line x1="817.3" y1="-7.0" x2="800.0" y2="-17.0"/>
-  </g>
   </g></g>
 </svg>
