@@ -302,10 +302,10 @@ def pill(x: float, y: float, kind: str, width: float | None = None) -> str:
     width = width or len(label) * 10 * CHAR + 18
     live = kind == "wip"  # work in progress gets a pulsing dot, like a recording light
     return (
-        f'<rect x="{x}" y="{y - 10}" width="{width}" height="20" rx="10" style="fill:var({fill})"/>'
-        + (f'<circle class="pulse" cx="{x + 9}" cy="{y}" r="2.5" style="fill:var({ink})"/>' if live else "")
-        + f'<text x="{x + width / 2 + (6 if live else 0)}" y="{y + 3.5}" font-size="10" text-anchor="middle" '
-        f'letter-spacing="1" style="fill:var({ink})">{label}</text>'
+        f'<rect x="{x + .5}" y="{y - 9.5}" width="{width - 1}" height="19" rx="10" style="fill:var({fill});stroke:var({ink});stroke-opacity:.45;stroke-width:1"/>'
+        + (f'<circle class="pulse" cx="{x + 11}" cy="{y}" r="2.5" style="fill:var({ink})"/>' if live else "")
+        + f'<text x="{x + (width + 14) / 2 if live else x + width / 2}" y="{y + 3.5}" font-size="10" text-anchor="middle" '
+        f'letter-spacing=".6" style="fill:var({ink})">{label}</text>'
     )
 
 
@@ -342,7 +342,7 @@ def status_bar(counts: dict[str, int]) -> str:
     return "".join(parts)
 
 
-SHOT_COLUMNS = [(100, "SHOT"), (290, "DESCRIPTION"), (548, "FRAMES"), (628, "VER"), (692, "RT"), (742, "STATUS")]
+SHOT_COLUMNS = [(100, "SHOT"), (290, "DESCRIPTION"), (548, "FRAMES"), (628, "VER"), (692, "RT"), (732, "STATUS")]
 
 
 def shot_card(code: str, repo: dict, info: dict, delay: float = 0) -> str:
@@ -357,6 +357,7 @@ def shot_card(code: str, repo: dict, info: dict, delay: float = 0) -> str:
         f'<stop offset="0" stop-color="{color}"/><stop offset="1" stop-color="{color}" stop-opacity=".25"/></linearGradient></defs>'
         f'<rect x="14" y="10" width="72" height="44" rx="4" fill="#1b1f24" style="fill:#1b1f24"/>'
         f'<rect x="14" y="10" width="72" height="44" rx="4" fill="url(#g)"/>'
+        f'<rect x="14.5" y="10.5" width="71" height="43" rx="4" style="fill:none;stroke:var(--ink);stroke-opacity:.3;stroke-width:1"/>'
         f'<text x="50" y="33" font-size="14" font-weight="700" text-anchor="middle" {white}>{escape(code[2:])}</text>'
         f'<text x="50" y="47" font-size="8.5" text-anchor="middle" letter-spacing=".5" opacity=".85" {white}>'
         f'{escape(fit(language.get("name", "").upper(), 66, 8.5))}</text>'
@@ -366,7 +367,7 @@ def shot_card(code: str, repo: dict, info: dict, delay: float = 0) -> str:
         + text(548, 37, info["frames"], size=11.5)
         + text(628, 37, fit(info["version"], 60, 11.5), size=11.5)
         + text(692, 37, info["rt"], size=11.5)
-        + pill(742, 32, info["status"], 86)
+        + pill(732, 32, info["status"], 96)
     )
     return svg(64, body, f"{code} {repo['name']}: {repo['description'] or ''}", delay=delay)
 
