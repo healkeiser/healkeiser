@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="56" viewBox="0 0 840 56" role="img" aria-label="5 OF 27 RECENT CHANGES · RENDERED 2026-11-20"><style>:root{--bg:#ffffff;--panel:#f6f8fa;--ink:#1f2328;--line:#d0d7de;--mute:#59636e;--ok:#1a7f37;--okb:#dafbe1;--wip:#9a6700;--wipb:#fff8c5;--hold:#59636e;--holdb:#eaeef2;--fix:#cf222e;--fixb:#ffebe9}
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="56" viewBox="0 0 840 56" role="img" aria-label="5 OF 27 RECENT CHANGES · RENDERED 2026-11-21"><style>:root{--bg:#ffffff;--panel:#f6f8fa;--ink:#1f2328;--line:#d0d7de;--mute:#59636e;--ok:#1a7f37;--okb:#dafbe1;--wip:#9a6700;--wipb:#fff8c5;--hold:#59636e;--holdb:#eaeef2;--fix:#cf222e;--fixb:#ffebe9}
 text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;fill:var(--ink)}
 .n{display:none}
 @media (max-width:560px){.w{display:none}.n{display:inline}}
@@ -11,4 +11,4 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',mo
 .bg{fill:var(--bg)} .panel{fill:var(--panel)} .ink{fill:var(--ink)}
 .in{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}}
-</style><g transform="translate(0 0)"><g class="in" style="animation-delay:2.05s"><path d="M0.75,0 V29.25 A10,10 0 0 0 10.75,39.25 H829.25 A10,10 0 0 0 839.25,29.25 V0 Z" class="panel"/><g class="w"><text x="16" y="25" class="k" font-size="12" font-weight="400">5 OF 27 RECENT CHANGES · RENDERED 2026-11-20</text></g><g class="n"><text x="16" y="29" class="k" font-size="22" font-weight="400">5 OF 27 CHANGES</text></g><path d="M0.75,0 V29.25 A10,10 0 0 0 10.75,39.25 H829.25 A10,10 0 0 0 839.25,29.25 V0" class="ln"/></g></g></svg>
+</style><g transform="translate(0 0)"><g class="in" style="animation-delay:2.05s"><path d="M0.75,0 V29.25 A10,10 0 0 0 10.75,39.25 H829.25 A10,10 0 0 0 839.25,29.25 V0 Z" class="panel"/><g class="w"><text x="16" y="25" class="k" font-size="12" font-weight="400">5 OF 27 RECENT CHANGES · RENDERED 2026-11-21</text></g><g class="n"><text x="16" y="29" class="k" font-size="22" font-weight="400">5 OF 27 CHANGES</text></g><path d="M0.75,0 V29.25 A10,10 0 0 0 10.75,39.25 H829.25 A10,10 0 0 0 839.25,29.25 V0" class="ln"/></g></g></svg>
