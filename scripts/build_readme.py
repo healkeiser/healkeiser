@@ -26,7 +26,9 @@ Examples:
 """
 
 # Built-in
+import base64
 import datetime as dt
+import io
 import json
 import os
 import re
@@ -36,6 +38,9 @@ import textwrap
 import urllib.request
 from html import escape
 from pathlib import Path
+
+# Third-party
+from PIL import Image, ImageOps
 
 
 ###### Constants
@@ -57,6 +62,8 @@ DAILIES_COUNT = 5
 DAILIES_PER_REPO = 2
 DAILIES_SCAN = 15  # recently pushed repos scanned for dailies
 VERSIONS = 3  # versions listed per shot
+THUMB = (80, 40)  # a shot's thumbnail, in card pixels: 2:1, as GitHub's previews are
+THUMB_SCALE = 3  # stored at three times that, for sharp phone screens
 # Commits that are housekeeping, not work worth showing; matches conventional,
 # bracketed ([DOC]) and plain-sentence styles.
 NOISE = re.compile(
@@ -111,15 +118,17 @@ PILLS = {  # kind: (label, text colour, fill colour)
 }
 
 QUERY = """
-query($login: String!, $dailies: Int!, $versions: Int!) {
+query($login: String!, $dailies: Int!, $versions: Int!, $from: DateTime!) {
   user(login: $login) {
+    name bio company location createdAt
+    year: contributionsCollection(from: $from) { contributionCalendar { totalContributions } }
     pinnedItems(first: 6, types: REPOSITORY) {
       nodes { ... on Repository { ...repo } }
     }
     repositories(first: $dailies, privacy: PUBLIC, isFork: false,
                  ownerAffiliations: OWNER,
                  orderBy: {field: PUSHED_AT, direction: DESC}) {
-      nodes { ...repo }
+      totalCount nodes { ...repo }
     }
     contributionsCollection {
       contributionCalendar { weeks { contributionDays { date contributionCount } } }
@@ -128,6 +137,7 @@ query($login: String!, $dailies: Int!, $versions: Int!) {
 }
 fragment repo on Repository {
   name url description isPrivate isArchived pushedAt
+  stargazerCount usesCustomOpenGraphImage openGraphImageUrl
   primaryLanguage { name color }
   releases(first: $versions, orderBy: {field: CREATED_AT, direction: DESC}) {
     nodes { tagName isPrerelease }
@@ -235,6 +245,22 @@ def compact(number: int) -> str:
     return str(number) if number < 1000 else f"{number / 1000:.1f}".rstrip("0").rstrip(".") + "k"
 
 
+def profile_of(user: dict) -> dict:
+    """Return the slate's fields, read from the GitHub profile.
+
+    The role is the bio up to its first `` at `` or comma, so a bio such as
+    ``Head of Pipeline at Lotchi, based in Paris.`` gives ``Head of Pipeline``.
+    """
+    bio = (user.get("bio") or "").strip()
+    studio = [part.strip().lstrip("@") for part in (user.get("company"), user.get("location")) if part and part.strip()]
+    return {
+        "name": user.get("name") or USER,
+        "role": re.split(r" at |,", bio)[0].strip().rstrip("."),
+        "studio": " · ".join(studio),
+        "since": (user.get("createdAt") or "")[:4],
+    }
+
+
 def diffstat(additions: int, deletions: int) -> list[str]:
     """Return GitHub's five-block diffstat: ``ok`` and ``fix`` blocks, ``hold`` for the rest."""
     total = additions + deletions
@@ -258,9 +284,9 @@ def request(url: str, token: str, body: dict | None = None) -> dict:
         return json.load(response)
 
 
-def fetch(token: str) -> dict:
-    """Return the ``user`` object of the GraphQL query."""
-    variables = {"login": USER, "dailies": DAILIES_SCAN, "versions": VERSIONS}
+def fetch(token: str, year: int) -> dict:
+    """Return the ``user`` object of the GraphQL query; ``year`` bounds the take count."""
+    variables = {"login": USER, "dailies": DAILIES_SCAN, "versions": VERSIONS, "from": f"{year}-01-01T00:00:00Z"}
     payload = request("https://api.github.com/graphql", token, {"query": QUERY, "variables": variables})
     if "errors" in payload:
         raise RuntimeError(payload["errors"])
@@ -302,6 +328,31 @@ def change_size(token: str, repo: str, oid: str) -> tuple[int, int]:
     except OSError:  # HTTP and network errors: show an empty diffstat, keep rendering
         return 0, 0
     return stats.get("additions", 0), stats.get("deletions", 0)
+
+
+def shrink(data: bytes) -> str:
+    """Return an image cropped to a thumbnail, as a JPEG data URI."""
+    size = (THUMB[0] * THUMB_SCALE, THUMB[1] * THUMB_SCALE)
+    image = ImageOps.fit(Image.open(io.BytesIO(data)).convert("RGB"), size, Image.Resampling.LANCZOS)
+    out = io.BytesIO()
+    image.save(out, "JPEG", quality=82, optimize=True)
+    return "data:image/jpeg;base64," + base64.b64encode(out.getvalue()).decode()
+
+
+def thumbnail(repo: dict) -> str | None:
+    """Return the repo's own social preview as a thumbnail data URI.
+
+    The image is embedded: an SVG shown through ``<img>`` cannot load another
+    file. Returns None when the repository has no custom image (GitHub's
+    generated card is unreadable at this size) or it cannot be fetched.
+    """
+    if not repo.get("usesCustomOpenGraphImage"):
+        return None
+    try:  # a public image host: no token is sent
+        with urllib.request.urlopen(repo["openGraphImageUrl"], timeout=60) as response:
+            return shrink(response.read())
+    except OSError:  # network errors and unreadable images: keep the graded plate
+        return None
 
 
 def history_of(repo: dict) -> dict:
@@ -499,18 +550,29 @@ def shot_card(theme: str, code: str, repo: dict, info: dict, delay: float = 0) -
     white = 'fill="#fff" style="fill:#fff"'
     lines = wrap(repo["description"] or "", 240, 11.5)
     versions = info["versions"] or ["—"]
+    tw, th = THUMB
+    if info["thumb"]:
+        # Thumbnail: the repository's own preview image.
+        plate = (
+            f'<defs><clipPath id="t"><rect x="10" y="12" width="{tw}" height="{th}" rx="4"/></clipPath></defs>'
+            f'<image x="10" y="12" width="{tw}" height="{th}" href="{info["thumb"]}" clip-path="url(#t)"/>'
+        )
+    else:
+        # No image: a plate graded from the language colour, with the shot number.
+        plate = (
+            f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
+            f'<stop offset="0" stop-color="{color}"/><stop offset="1" stop-color="{color}" stop-opacity=".25"/></linearGradient></defs>'
+            f'<rect x="10" y="12" width="{tw}" height="{th}" rx="4" fill="#1b1f24" style="fill:#1b1f24"/>'
+            f'<rect x="10" y="12" width="{tw}" height="{th}" rx="4" fill="url(#g)"/>'
+            f'<text x="50" y="33" font-size="14" font-weight="700" text-anchor="middle" {white}>{escape(code[2:])}</text>'
+            f'<text x="50" y="45" font-size="8.5" text-anchor="middle" letter-spacing=".5" opacity=".85" {white}>'
+            f'{escape(fit(language.get("name", "").upper(), 72, 8.5))}</text>'
+        )
     body = (
-        # Thumbnail: a plate graded from the language colour, with the shot number.
-        f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
-        f'<stop offset="0" stop-color="{color}"/><stop offset="1" stop-color="{color}" stop-opacity=".25"/></linearGradient></defs>'
-        f'<rect x="14" y="10" width="72" height="44" rx="4" fill="#1b1f24" style="fill:#1b1f24"/>'
-        f'<rect x="14" y="10" width="72" height="44" rx="4" fill="url(#g)"/>'
-        f'<rect x="14.5" y="10.5" width="71" height="43" rx="4" style="fill:none;stroke:var(--ink);stroke-opacity:.3;stroke-width:1"/>'
-        f'<text x="50" y="33" font-size="14" font-weight="700" text-anchor="middle" {white}>{escape(code[2:])}</text>'
-        f'<text x="50" y="47" font-size="8.5" text-anchor="middle" letter-spacing=".5" opacity=".85" {white}>'
-        f'{escape(fit(language.get("name", "").upper(), 66, 8.5))}</text>'
+        plate
+        + f'<rect x="10.5" y="12.5" width="{tw - 1}" height="{th - 1}" rx="4" style="fill:none;stroke:var(--ink);stroke-opacity:.3;stroke-width:1"/>'
         + wide(
-            text(100, 27, code, "m", 10.5)
+            text(100, 27, f"{code}  ★ {compact(info['stars'])}", "m", 10.5)
             + text(100, 45, fit(repo["name"], 180, 13), size=13, weight=700)
             + "".join(text(290, 28 + i * 16 - (8 if len(lines) == 1 else 0), line, size=11.5) for i, line in enumerate(lines))
             + text(548, 37, info["frames"], size=11.5)
@@ -525,7 +587,8 @@ def shot_card(theme: str, code: str, repo: dict, info: dict, delay: float = 0) -
             + pill(604, 32, info["status"], 222, 20)
         )
     )
-    return svg(theme, 64, body, f"{code} {repo['name']}: {repo['description'] or ''}", delay=delay)
+    label = f"{code} {repo['name']}: {repo['description'] or ''} ({info['stars']} stars)"
+    return svg(theme, 64, body, label, delay=delay)
 
 
 DAILY_COLUMNS = [(16, "DATE"), (104, "SHOT"), (290, "NOTE"), (788, "DIFF")]
@@ -616,10 +679,10 @@ def main() -> None:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         sys.exit("GITHUB_TOKEN is not set.")
-    user = fetch(token)
+    today = dt.datetime.now(dt.timezone.utc).date()
+    user = fetch(token, today.year)
     pinned = [r for r in user["pinnedItems"]["nodes"] if r and not r["isPrivate"]]
     recent = [r for r in user["repositories"]["nodes"] if r["name"] != USER]
-    today = dt.datetime.now(dt.timezone.utc).date()
     codes = {repo["name"]: f"SH{i * 10:03d}" for i, repo in enumerate(pinned, start=1)}
 
     # Start clean: shots and dailies come and go with pins and commits.
@@ -639,6 +702,8 @@ def main() -> None:
             "frames": f"{FIRST_FRAME}-{FIRST_FRAME + max(history_of(repo)['totalCount'], 1) - 1}",
             "versions": versions,
             "rt": duration(render_time(token, repo)),
+            "stars": repo["stargazerCount"],
+            "thumb": thumbnail(repo),
             "status": status,
         }
         shots.append((row, repo, info))
@@ -674,7 +739,19 @@ def main() -> None:
     wave, total = waveform(days[-WAVE_DAYS:])
     last_take = max((r["pushedAt"][:10] for r in recent if r["pushedAt"]), default=str(today))
     template = (OUT / "slate.template.svg").read_text(encoding="utf-8")
+    who = profile_of(user)
+    summary = f"{who['name']}, {who['role']}, {who['studio']}"
     fills = {
+        "{{NAME}}": escape(who["name"]),
+        "{{ROLE}}": escape(fit(who["role"], 190, 16)),
+        "{{STUDIO}}": escape(fit(who["studio"], 180, 16)),
+        "{{STUDIO_NARROW}}": escape(fit(f"{who['studio']} · since {who['since']}", 796, 28)),
+        "{{SINCE}}": who["since"],
+        "{{SUMMARY}}": escape(summary),
+        # Roll, scene, take: public repositories, the year, contributions this year.
+        "{{ROLL}}": str(user["repositories"]["totalCount"]),
+        "{{SCENE}}": str(today.year),
+        "{{TAKE}}": f"{user['year']['contributionCalendar']['totalContributions']:,}",
         "{{COMMON}}": COMMON_CSS,
         "{{DATE}}": last_take,
         "{{WAVE}}": wave,
@@ -711,20 +788,22 @@ def main() -> None:
     ###### README
     # align="right" floats the images: floats stack with no gap (inline images
     # get one under each), and GitHub's 20px float padding lands off the left edge.
-    def block(name: str, links: list[tuple[str, str, str]]) -> str:
-        rows = [picture(f"{name}-header.svg", "")]
-        rows += [f'<a href="{url}">{picture(file, alt)}</a>' for url, file, alt in links]
-        rows += [picture(f"{name}-footer.svg", "")]
+    # Head and foot are links too: some phone clients size a linked image
+    # differently from a bare one, which insets the rows from their frame.
+    def block(name: str, title: str, links: list[tuple[str, str, str]]) -> str:
+        more = f"https://github.com/{USER}?tab=repositories"
+        links = [(more, f"{name}-header.svg", title), *links, (more, f"{name}-footer.svg", f"{title}: summary")]
+        rows = [f'<a href="{url}">{picture(file, alt)}</a>' for url, file, alt in links]
         return "<p>\n" + "\n".join(rows) + "\n</p>"
 
     shot_links = [(repo["url"], f"shot-{codes[repo['name']]}.svg", f"{codes[repo['name']]} {repo['name']}") for _, repo, _ in shots]
     daily_links = [(d["url"], f"daily-{i:02d}.svg", f"{d['repo']}: {d['note']}") for i, d in enumerate(dailies, start=1)]
     readme = (ROOT / "README.template.md").read_text(encoding="utf-8")
     readme = readme.replace(
-        "{{SLATE}}", picture("slate.svg", "GitHub slate — Valentin Beaumont, Head of Pipeline at Lotchi, Paris", "")
+        "{{SLATE}}", picture("slate.svg", f"GitHub slate — {summary}", "")
     )
-    readme = readme.replace("{{SHOTS}}", block("shots", shot_links))
-    readme = readme.replace("{{DAILIES}}", block("dailies", daily_links))
+    readme = readme.replace("{{SHOTS}}", block("shots", "Shots", shot_links))
+    readme = readme.replace("{{DAILIES}}", block("dailies", "Dailies", daily_links))
     (ROOT / "README.md").write_text(readme, encoding="utf-8")
 
 
@@ -756,6 +835,16 @@ def self_test() -> None:
     assert compact(999) == "999" and compact(1200) == "1.2k" and compact(3000) == "3k"
     assert diffstat(120, 34) == ["ok"] * 4 + ["fix"] and diffstat(0, 0) == ["hold"] * 5
     assert diffstat(0, 10) == ["fix"] * 5
+    who = profile_of({"name": "A B", "bio": "Head of Pipeline at Lotchi, based in Paris.", "company": "@Lotchi",
+                      "location": "Paris", "createdAt": "2019-11-04T22:39:47Z"})
+    assert who == {"name": "A B", "role": "Head of Pipeline", "studio": "Lotchi · Paris", "since": "2019"}
+    assert profile_of({}) == {"name": USER, "role": "", "studio": "", "since": ""}
+    picture_bytes = io.BytesIO()
+    Image.new("RGBA", (1280, 640), "#336699").save(picture_bytes, "PNG")
+    thumb = shrink(picture_bytes.getvalue())
+    assert thumb.startswith("data:image/jpeg;base64,")
+    assert Image.open(io.BytesIO(base64.b64decode(thumb.split(",")[1]))).size == (240, 120)
+    assert thumbnail({"usesCustomOpenGraphImage": False}) is None
     assert "&lt;b&gt;" in text(0, 0, "<b>")
     tc = timecode(0, 0, 10, "t")
     assert tc.count('class="tc"') == 5 and "steps(24)" in tc and "@keyframes tc24" in tc
